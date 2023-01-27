@@ -120,13 +120,13 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage verifyRegistrationModalAppears() {
+    public RegistrationPage verifyResultModalAppears() {
         registrationResultsModal.verifyModalAppears();
 
         return this;
     }
 
-    public RegistrationPage verifyResult(String key, String value) {
+    public RegistrationPage verifyResults(String key, String value) {
         registrationResultsModal.verifyResult(key, value);
 
         return this;
