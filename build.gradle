@@ -1,20 +1,5 @@
 plugins {
     id 'java-library'
-    id 'io.qameta.allure' version '2.11.2'
-}
-
-allure {
-    report {
-        version.set("2.20.1")
-    }
-    adapter {
-        aspectjWeaver.set(true)
-        frameworks {
-            junit5 {
-                adapterVersion.set("2.20.1")
-            }
-        }
-    }
 }
 
 repositories {

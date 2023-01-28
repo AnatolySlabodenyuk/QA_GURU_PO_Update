@@ -1,18 +1,10 @@
 package guru.qa.tests;
 
-import guru.qa.pages.RegistrationPage;
-
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
 import com.github.javafaker.Faker;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
     Faker faker = new Faker();
-
-    RegistrationPage registrationPage = new RegistrationPage();
-
     @Test
     void successfulRegistrationTest() {
         String userName = faker.name().firstName();
