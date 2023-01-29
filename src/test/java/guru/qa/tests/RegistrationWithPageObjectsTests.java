@@ -22,7 +22,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         String birthYear = "1993";
         String birthDay = "06";
 
-        step("Открыть форму регистрации", () -> {
+        step("Открыть форму регистрации и проверить, что форма имеет правильное название", () -> {
         registrationPage.openPage();
         });
 
@@ -42,7 +42,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 .submit();
         });
 
-        step("Проверить, корректность заполнения данных в таблице", () -> {
+        step("Проверить корректность заполнения данных в таблице", () -> {
         registrationPage.verifyResultModalAppears()
                 .verifyResults("Student Name", userName + " " + lastName)
                 .verifyResults("Student Email", eMail)
