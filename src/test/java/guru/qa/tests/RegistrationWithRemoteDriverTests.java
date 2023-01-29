@@ -25,7 +25,10 @@ public class RegistrationWithRemoteDriverTests extends TestBaseExtended {
             open("/automation-practice-form");
         });
 
+        step("Проверить, что форма имеет правильное название", () -> {
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        });
+        
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
