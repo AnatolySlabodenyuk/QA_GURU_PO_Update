@@ -35,100 +35,84 @@ public class RegistrationPage {
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-
         return this;
     }
 
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
-
         return this;
     }
 
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
-
         return this;
     }
 
     public RegistrationPage setEmail(String value) {
         userEmailInput.setValue(value);
-
         return this;
     }
 
     public RegistrationPage setGender() {
         genderChoice.$(byText("Male")).click();
-
         return this;
     }
 
     public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
-
         return this;
     }
 
     public RegistrationPage setUserAddress(String value) {
         currentAddressInput.setValue(value);
-
         return this;
     }
 
     public RegistrationPage setSubjects() {
         userSubjectsInput.setValue("Math").pressEnter();
-
         return this;
     }
 
     public RegistrationPage setHobbies() {
         userHobbiesChoice.$(byText("Sports")).click();
-
         return this;
     }
 
     public RegistrationPage setPictures() {
         pictureUpload.uploadFromClasspath("img/1.jpg");
-
         return this;
     }
 
     public RegistrationPage setState() {
         stateDropdown.click();
         stateAndCityChoice.$(byText("NCR")).click();
-
         return this;
     }
 
     public RegistrationPage setCity() {
         cityDropdown.click();
         stateAndCityChoice.$(byText("Delhi")).click();
-
         return this;
     }
 
     public RegistrationPage submit() {
         submitButton.click();
-
         return this;
     }
 
     public RegistrationPage setBirthDate(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
-
         return this;
     }
 
     public RegistrationPage verifyResultModalAppears() {
         registrationResultsModal.verifyModalAppears();
-
         return this;
     }
 
     public RegistrationPage verifyResults(String key, String value) {
         registrationResultsModal.verifyResult(key, value);
-
         return this;
     }
 }
