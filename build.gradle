@@ -50,3 +50,9 @@ task remote_test(type: Test) {
         includeTags("remote")
     }
 }
+
+task qa_guru_homeWork(type: Test) {
+    useJUnitPlatform {
+        includeTags("qa_guru_Jenkins")
+    }
+}

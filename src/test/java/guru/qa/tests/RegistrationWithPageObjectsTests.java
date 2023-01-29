@@ -1,11 +1,15 @@
 package guru.qa.tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.github.javafaker.Faker;
+
+import static io.qameta.allure.Allure.step;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
     Faker faker = new Faker();
     @Test
+    @Tag("qa_guru_Jenkins")
     void successfulRegistrationTest() {
         String userName = faker.name().firstName();
         String lastName = faker.name().lastName();
@@ -18,9 +22,12 @@ public class RegistrationWithPageObjectsTests extends TestBase {
         String birthYear = "1993";
         String birthDay = "06";
 
-        registrationPage.openPage()
+        step("Открыть форму регистрации", () -> {
+        registrationPage.openPage();
+        });
 
-                .setFirstName(userName)
+        step("Заполнить поля формы и нажать кнопку", () -> {
+        registrationPage.setFirstName(userName)
                 .setLastName(lastName)
                 .setEmail(eMail)
                 .setGender()
@@ -32,9 +39,11 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 .setUserAddress(currentAddress)
                 .setState()
                 .setCity()
-                .submit()
+                .submit();
+        });
 
-                .verifyResultModalAppears()
+        step("Проверить, корректность заполнения данных в таблице", () -> {
+        registrationPage.verifyResultModalAppears()
                 .verifyResults("Student Name", userName + " " + lastName)
                 .verifyResults("Student Email", eMail)
                 .verifyResults("Gender", "Male")
@@ -45,5 +54,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
                 .verifyResults("Picture", userPicture)
                 .verifyResults("Address", currentAddress)
                 .verifyResults("State and City", "NCR" + " " + "Delhi");
+        });
     }
 }
