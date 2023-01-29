@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 public class RegistrationWithRemoteDriverTests extends TestBaseExtended {
 
@@ -20,11 +21,15 @@ public class RegistrationWithRemoteDriverTests extends TestBaseExtended {
         String eMail = "slabodenyukanatoly@gmail.com";
         String userNumber = "1234567890";
 
-        open("/automation-practice-form");
+        step("Перейти на форму регистрации", () -> {
+            open("/automation-practice-form");
+        });
+
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
+        step("Заполнить форму", () -> {
         $("#firstName").setValue(userName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(eMail);
@@ -43,10 +48,13 @@ public class RegistrationWithRemoteDriverTests extends TestBaseExtended {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
+        });
 
+        step("Проверить корректность заполнения данных в таблице", () -> {
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(text(userName), text(lastName),
                 text(eMail), text(userNumber));
+        });
     }
 }
