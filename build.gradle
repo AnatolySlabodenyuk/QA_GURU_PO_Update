@@ -3,6 +3,10 @@ plugins {
     id 'io.qameta.allure' version '2.11.2'
 }
 
+repositories {
+    mavenCentral()
+}
+
 allure {
     report {
         version.set('2.20.1') // Allure Report (https://github.com/allure-framework/allure2)
@@ -17,11 +21,7 @@ allure {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-compileTestJava {
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
@@ -35,8 +35,16 @@ dependencies {
     )
 }
 
-test {
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 
 task simple_test(type: Test) {
@@ -54,5 +62,11 @@ task remote_test(type: Test) {
 task qa_guru_homeWork(type: Test) {
     useJUnitPlatform {
         includeTags("qa_guru_Jenkins")
+    }
+}
+
+task one_property_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("one_property")
     }
 }
