@@ -3,10 +3,6 @@ plugins {
     id 'io.qameta.allure' version '2.11.2'
 }
 
-repositories {
-    mavenCentral()
-}
-
 allure {
     report {
         version.set('2.20.1') // Allure Report (https://github.com/allure-framework/allure2)
@@ -21,30 +17,32 @@ allure {
     }
 }
 
-tasks.withType(JavaCompile) {
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
     options.encoding = 'UTF-8'
 }
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:6.10.3",
-            "org.junit.jupiter:junit-jupiter:5.9.1",
-            "com.github.javafaker:javafaker:0.12",
-            "org.slf4j:slf4j-simple:2.0.6",
+            'com.codeborne:selenide:6.10.3',
+            'org.junit.jupiter:junit-jupiter:5.9.1',
+            'com.github.javafaker:javafaker:0.12',
+            'org.slf4j:slf4j-simple:2.0.6',
             'io.qameta.allure:allure-selenide:2.17.3',
     )
 }
 
+test {
+    useJUnitPlatform {
+    }
+}
+
 tasks.withType(Test) {
     systemProperties(System.getProperties())
-    useJUnitPlatform()
 
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
-        }
-    }
 }
 
 task simple_test(type: Test) {
@@ -70,3 +68,4 @@ task one_property_test(type: Test) {
         includeTags("one_property")
     }
 }
+
