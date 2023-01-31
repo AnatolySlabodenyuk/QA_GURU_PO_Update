@@ -57,15 +57,15 @@ task remote_test(type: Test) {
     }
 }
 
-task qa_guru_homeWork(type: Test) {
-    useJUnitPlatform {
-        includeTags("qa_guru_Jenkins")
-    }
-}
-
 task one_property_test(type: Test) {
     useJUnitPlatform {
         includeTags("one_property")
+    }
+}
+
+task qa_guru_homeWork(type: Test) {
+    useJUnitPlatform {
+        includeTags("qa_guru_Jenkins")
     }
 }
 
