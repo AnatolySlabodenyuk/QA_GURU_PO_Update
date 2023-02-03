@@ -6,12 +6,12 @@
     "comment": "comment here",
     "reportLink": "",
     "language": "ru",
-    "allureFolder": "build/allure-report/",
-    "enableChart": false
+    "allureFolder": "allure-report/",
+    "enableChart": true
   },
   "telegram": {
-    "token": "",
-    "chat": "",
+    "token": "6142449821:AAFxSgL5D3fAb9A1qpnuyuFtmXqJyrpDVyE",
+    "chat": "-1001864705396",
     "replyTo": ""
   }
 }
